@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoGrabber" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-nj-xc7">
+                                <rect key="frame" x="241" y="285" width="119" height="30"/>
+                                <state key="normal" title="Instagram Sign in"/>
+                                <connections>
+                                    <segue destination="n2y-2y-o18" kind="presentation" identifier="idSegueShowIGVC" id="KzL-oG-HOL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvm-6r-ZwK">
+                                <rect key="frame" x="214" y="446" width="173" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="Logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vg-fa-4Tu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yvm-6r-ZwK" secondAttribute="bottom" constant="124" id="0Op-1b-cUd"/>
+                            <constraint firstItem="Yvm-6r-ZwK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="94" id="Cf3-yV-E0q"/>
+                            <constraint firstItem="MsW-nj-xc7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DzQ-g8-0RR"/>
+                            <constraint firstItem="Yvm-6r-ZwK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HU9-or-Cv7"/>
+                            <constraint firstItem="MsW-nj-xc7" firstAttribute="centerX" secondItem="Yvm-6r-ZwK" secondAttribute="centerX" id="Rih-s9-FS7"/>
+                            <constraint firstItem="MsW-nj-xc7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aZW-Tc-fEN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yvm-6r-ZwK" secondAttribute="bottom" constant="148" id="gIy-RE-1Q6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Rih-s9-FS7"/>
+                                <exclude reference="aZW-Tc-fEN"/>
+                                <exclude reference="Cf3-yV-E0q"/>
+                                <exclude reference="HU9-or-Cv7"/>
+                                <exclude reference="gIy-RE-1Q6"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="DzQ-g8-0RR"/>
+                                <include reference="Rih-s9-FS7"/>
+                                <include reference="aZW-Tc-fEN"/>
+                                <include reference="Cf3-yV-E0q"/>
+                                <include reference="HU9-or-Cv7"/>
+                                <exclude reference="0Op-1b-cUd"/>
+                                <include reference="gIy-RE-1Q6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="IGsignin" destination="MsW-nj-xc7" id="HRX-b2-b3o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Instagram View Controller-->
+        <scene sceneID="oBM-Qy-LY2">
+            <objects>
+                <viewController id="n2y-2y-o18" userLabel="Instagram View Controller" customClass="IGViewController" customModule="PhotoGrabber" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sne-By-TK9"/>
+                        <viewControllerLayoutGuide type="bottom" id="u5f-Fn-pIZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ijL-Th-kHb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O85-zB-xgs">
+                                <rect key="frame" x="0.0" y="72" width="600" height="528"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="528" id="nMH-xU-rdL"/>
+                                </constraints>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwg-Uk-7Dg">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="stop" id="wvU-mr-Ehc">
+                                        <connections>
+                                            <action selector="dismiss:" destination="n2y-2y-o18" id="chF-Pr-3W0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O85-zB-xgs" firstAttribute="leading" secondItem="xwg-Uk-7Dg" secondAttribute="leading" id="9c1-Wc-NM8"/>
+                            <constraint firstItem="O85-zB-xgs" firstAttribute="top" secondItem="xwg-Uk-7Dg" secondAttribute="bottom" id="JWQ-TZ-oBu"/>
+                            <constraint firstItem="xwg-Uk-7Dg" firstAttribute="top" secondItem="Sne-By-TK9" secondAttribute="bottom" constant="8" id="NLR-3f-bbt"/>
+                            <constraint firstItem="O85-zB-xgs" firstAttribute="trailing" secondItem="xwg-Uk-7Dg" secondAttribute="trailing" id="ODE-6Q-uom"/>
+                            <constraint firstItem="xwg-Uk-7Dg" firstAttribute="leading" secondItem="O85-zB-xgs" secondAttribute="leading" id="WXM-Ra-3jV"/>
+                            <constraint firstItem="xwg-Uk-7Dg" firstAttribute="trailing" secondItem="O85-zB-xgs" secondAttribute="trailing" id="cgL-Hp-IAT"/>
+                            <constraint firstItem="O85-zB-xgs" firstAttribute="bottom" secondItem="u5f-Fn-pIZ" secondAttribute="top" id="dR0-fo-JPn"/>
+                            <constraint firstItem="O85-zB-xgs" firstAttribute="leading" secondItem="ijL-Th-kHb" secondAttribute="leading" id="lUj-tA-Cs3"/>
+                            <constraint firstAttribute="trailing" secondItem="O85-zB-xgs" secondAttribute="trailing" id="mKk-Of-JuM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NLR-3f-bbt"/>
+                                <exclude reference="WXM-Ra-3jV"/>
+                                <exclude reference="cgL-Hp-IAT"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="NLR-3f-bbt"/>
+                                <include reference="WXM-Ra-3jV"/>
+                                <include reference="cgL-Hp-IAT"/>
+                                <exclude reference="9c1-Wc-NM8"/>
+                                <exclude reference="JWQ-TZ-oBu"/>
+                                <exclude reference="ODE-6Q-uom"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="O85-zB-xgs" id="lHW-D5-Pta"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2y-5j-8oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="647" y="1172"/>
+        </scene>
+    </scenes>
+</document>
