@@ -45,6 +45,14 @@ class ViewController: UIViewController {
     @IBAction func Logout(sender: AnyObject) {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey("IGAccessToken")
+        
+        
+        // 清除webview 登入過的cookie
+        if let cookies =   NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies {
+            for cookie in cookies {
+                NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(cookie)
+            }
+        }
         checkForIGExistingAccessToken()
         
         
