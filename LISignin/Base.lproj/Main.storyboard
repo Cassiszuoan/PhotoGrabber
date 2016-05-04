@@ -18,15 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-nj-xc7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-nj-xc7">
                                 <rect key="frame" x="241" y="285" width="119" height="30"/>
                                 <state key="normal" title="Instagram Sign in"/>
                                 <connections>
                                     <segue destination="n2y-2y-o18" kind="presentation" identifier="idSegueShowIGVC" id="KzL-oG-HOL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvm-6r-ZwK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvm-6r-ZwK">
                                 <rect key="frame" x="214" y="446" width="173" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="Z6v-Eb-ni3"/>
+                                </constraints>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="Logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vg-fa-4Tu"/>
@@ -36,12 +39,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yvm-6r-ZwK" secondAttribute="bottom" constant="124" id="0Op-1b-cUd"/>
+                            <constraint firstItem="Yvm-6r-ZwK" firstAttribute="centerX" secondItem="MsW-nj-xc7" secondAttribute="centerX" id="0WJ-k7-eP8"/>
                             <constraint firstItem="Yvm-6r-ZwK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="94" id="Cf3-yV-E0q"/>
                             <constraint firstItem="MsW-nj-xc7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DzQ-g8-0RR"/>
                             <constraint firstItem="Yvm-6r-ZwK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HU9-or-Cv7"/>
                             <constraint firstItem="MsW-nj-xc7" firstAttribute="centerX" secondItem="Yvm-6r-ZwK" secondAttribute="centerX" id="Rih-s9-FS7"/>
                             <constraint firstItem="MsW-nj-xc7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aZW-Tc-fEN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yvm-6r-ZwK" secondAttribute="bottom" constant="148" id="gIy-RE-1Q6"/>
+                            <constraint firstItem="Yvm-6r-ZwK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tc8-57-kFL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

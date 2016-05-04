@@ -15,6 +15,7 @@
 		CC4CDF531CD6FA9F0031A65B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CC95AE171CD72E0A00E72CC1 /* IGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */; };
 		CCAE54221CD6FFA100280F5B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAE54211CD6FFA100280F5B /* Alamofire.framework */; };
+		CCF42E3B1CD75FC300DC68FC /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGViewController.swift; sourceTree = "<group>"; };
 		CCAE54211CD6FFA100280F5B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +39,7 @@
 			files = (
 				CC4CDF531CD6FA9F0031A65B /* SwiftyJSON.framework in Frameworks */,
 				CCAE54221CD6FFA100280F5B /* Alamofire.framework in Frameworks */,
+				CCF42E3B1CD75FC300DC68FC /* OAuthSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +51,7 @@
 			children = (
 				C04133441C282A8200C48FAE /* LISignIn */,
 				C04133431C282A8200C48FAE /* Products */,
+				CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */,
 				CCAE54211CD6FFA100280F5B /* Alamofire.framework */,
 				CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */,
 			);
@@ -151,6 +155,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwift.framework",
 			);
 			outputPaths = (
 			);

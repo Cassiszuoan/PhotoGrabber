@@ -98,7 +98,9 @@ class IGViewController: UIViewController,UIWebViewDelegate {
         .responseJSON{
             response in
             let json = JSON(response.result.value!)
+            print(json)
             let accessToken = json["access_token"].stringValue
+            
             NSUserDefaults.standardUserDefaults().setObject(accessToken, forKey: "IGAccessToken")
             NSUserDefaults.standardUserDefaults().synchronize()
             dispatch_async(dispatch_get_main_queue(), {()-> Void in
