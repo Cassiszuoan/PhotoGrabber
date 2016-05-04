@@ -12,10 +12,10 @@
 		C041334B1C282A8200C48FAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04133491C282A8200C48FAE /* Main.storyboard */; };
 		C041334D1C282A8200C48FAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C041334C1C282A8200C48FAE /* Assets.xcassets */; };
 		C04133501C282A8200C48FAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C041334E1C282A8200C48FAE /* LaunchScreen.storyboard */; };
-		CC4CDF531CD6FA9F0031A65B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		CC69BC731CD9B68B000A2991 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */; };
+		CC69BC751CD9B691000A2991 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC741CD9B691000A2991 /* OAuthSwift.framework */; };
+		CC69BC771CD9B698000A2991 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC761CD9B698000A2991 /* Alamofire.framework */; };
 		CC95AE171CD72E0A00E72CC1 /* IGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */; };
-		CCAE54221CD6FFA100280F5B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAE54211CD6FFA100280F5B /* Alamofire.framework */; };
-		CCF42E3B1CD75FC300DC68FC /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +26,10 @@
 		C041334C1C282A8200C48FAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C041334F1C282A8200C48FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C04133511C282A8200C48FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		CC69BC741CD9B691000A2991 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
+		CC69BC761CD9B698000A2991 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGViewController.swift; sourceTree = "<group>"; };
-		CCAE54211CD6FFA100280F5B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,9 +37,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC4CDF531CD6FA9F0031A65B /* SwiftyJSON.framework in Frameworks */,
-				CCAE54221CD6FFA100280F5B /* Alamofire.framework in Frameworks */,
-				CCF42E3B1CD75FC300DC68FC /* OAuthSwift.framework in Frameworks */,
+				CC69BC751CD9B691000A2991 /* OAuthSwift.framework in Frameworks */,
+				CC69BC771CD9B698000A2991 /* Alamofire.framework in Frameworks */,
+				CC69BC731CD9B68B000A2991 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,9 +51,9 @@
 			children = (
 				C04133441C282A8200C48FAE /* LISignIn */,
 				C04133431C282A8200C48FAE /* Products */,
-				CCF42E3A1CD75FC300DC68FC /* OAuthSwift.framework */,
-				CCAE54211CD6FFA100280F5B /* Alamofire.framework */,
-				CC4CDF521CD6FA9F0031A65B /* SwiftyJSON.framework */,
+				CC69BC761CD9B698000A2991 /* Alamofire.framework */,
+				CC69BC741CD9B691000A2991 /* OAuthSwift.framework */,
+				CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */,
 			);
 			sourceTree = "<group>";
 		};

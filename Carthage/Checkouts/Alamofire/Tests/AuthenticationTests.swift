@@ -1,6 +1,6 @@
 // AuthenticationTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2014–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,14 @@ class AuthenticationTestCase: BaseTestCase {
     let password = "password"
     var URLString = ""
 
+    var manager: Manager!
+
     override func setUp() {
         super.setUp()
 
+        manager = Manager(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+
+        // Clear out credentials
         let credentialStorage = NSURLCredentialStorage.sharedCredentialStorage()
 
         for (protectionSpace, credentials) in credentialStorage.allCredentials {
@@ -39,6 +44,10 @@ class AuthenticationTestCase: BaseTestCase {
                 credentialStorage.removeCredential(credential, forProtectionSpace: protectionSpace)
             }
         }
+
+        // Clear out cookies
+        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        cookieStorage.cookies?.forEach { cookieStorage.deleteCookie($0) }
     }
 }
 
@@ -60,7 +69,7 @@ class BasicAuthenticationTestCase: AuthenticationTestCase {
         var error: NSError?
 
         // When
-        Alamofire.request(.GET, URLString)
+        manager.request(.GET, URLString)
             .authenticate(user: "invalid", password: "credentials")
             .response { responseRequest, responseResponse, responseData, responseError in
                 request = responseRequest
@@ -71,7 +80,7 @@ class BasicAuthenticationTestCase: AuthenticationTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(timeout, handler: nil)
 
         // Then
         XCTAssertNotNil(request, "request should not be nil")
@@ -94,7 +103,7 @@ class BasicAuthenticationTestCase: AuthenticationTestCase {
         var error: NSError?
 
         // When
-        Alamofire.request(.GET, URLString)
+        manager.request(.GET, URLString)
             .authenticate(user: user, password: password)
             .response { responseRequest, responseResponse, responseData, responseError in
                 request = responseRequest
@@ -105,7 +114,7 @@ class BasicAuthenticationTestCase: AuthenticationTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(timeout, handler: nil)
 
         // Then
         XCTAssertNotNil(request, "request should not be nil")
@@ -136,7 +145,7 @@ class HTTPDigestAuthenticationTestCase: AuthenticationTestCase {
         var error: NSError?
 
         // When
-        Alamofire.request(.GET, URLString)
+        manager.request(.GET, URLString)
             .authenticate(user: "invalid", password: "credentials")
             .response { responseRequest, responseResponse, responseData, responseError in
                 request = responseRequest
@@ -147,7 +156,7 @@ class HTTPDigestAuthenticationTestCase: AuthenticationTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(timeout, handler: nil)
 
         // Then
         XCTAssertNotNil(request, "request should not be nil")
@@ -170,7 +179,7 @@ class HTTPDigestAuthenticationTestCase: AuthenticationTestCase {
         var error: NSError?
 
         // When
-        Alamofire.request(.GET, URLString)
+        manager.request(.GET, URLString)
             .authenticate(user: user, password: password)
             .response { responseRequest, responseResponse, responseData, responseError in
                 request = responseRequest
@@ -181,7 +190,7 @@ class HTTPDigestAuthenticationTestCase: AuthenticationTestCase {
                 expectation.fulfill()
             }
 
-        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(timeout, handler: nil)
 
         // Then
         XCTAssertNotNil(request, "request should not be nil")

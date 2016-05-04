@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Alamofire
+import SwiftyJSON
+import OAuthSwift
+
 class IGViewController: UIViewController,UIWebViewDelegate {
     
     

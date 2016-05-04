@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OAuthSwift
+
 class ViewController: UIViewController {
 
     // MARK: IBOutlet Properties
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.loadList(_:)),name:"load", object: nil)
         
        
         checkForIGExistingAccessToken()
