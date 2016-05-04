@@ -13,8 +13,9 @@
 		C041334D1C282A8200C48FAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C041334C1C282A8200C48FAE /* Assets.xcassets */; };
 		C04133501C282A8200C48FAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C041334E1C282A8200C48FAE /* LaunchScreen.storyboard */; };
 		CC69BC731CD9B68B000A2991 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */; };
-		CC69BC751CD9B691000A2991 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC741CD9B691000A2991 /* OAuthSwift.framework */; };
 		CC69BC771CD9B698000A2991 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC69BC761CD9B698000A2991 /* Alamofire.framework */; };
+		CC69BC7B1CDA2AF3000A2991 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC69BC7A1CDA2AF3000A2991 /* Auth.swift */; };
+		CC69BC7D1CDA2DD3000A2991 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC69BC7C1CDA2DD3000A2991 /* User.swift */; };
 		CC95AE171CD72E0A00E72CC1 /* IGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +28,9 @@
 		C041334F1C282A8200C48FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C04133511C282A8200C48FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		CC69BC741CD9B691000A2991 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 		CC69BC761CD9B698000A2991 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		CC69BC7A1CDA2AF3000A2991 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CC69BC7C1CDA2DD3000A2991 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = LISignin/User.swift; sourceTree = SOURCE_ROOT; };
 		CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC69BC751CD9B691000A2991 /* OAuthSwift.framework in Frameworks */,
 				CC69BC771CD9B698000A2991 /* Alamofire.framework in Frameworks */,
 				CC69BC731CD9B68B000A2991 /* SwiftyJSON.framework in Frameworks */,
 			);
@@ -52,7 +53,6 @@
 				C04133441C282A8200C48FAE /* LISignIn */,
 				C04133431C282A8200C48FAE /* Products */,
 				CC69BC761CD9B698000A2991 /* Alamofire.framework */,
-				CC69BC741CD9B691000A2991 /* OAuthSwift.framework */,
 				CC69BC721CD9B68B000A2991 /* SwiftyJSON.framework */,
 			);
 			sourceTree = "<group>";
@@ -73,8 +73,10 @@
 				C04133491C282A8200C48FAE /* Main.storyboard */,
 				C041334C1C282A8200C48FAE /* Assets.xcassets */,
 				C041334E1C282A8200C48FAE /* LaunchScreen.storyboard */,
+				CC69BC7A1CDA2AF3000A2991 /* Auth.swift */,
 				C04133511C282A8200C48FAE /* Info.plist */,
 				CC95AE161CD72E0A00E72CC1 /* IGViewController.swift */,
+				CC69BC7C1CDA2DD3000A2991 /* User.swift */,
 			);
 			path = LISignIn;
 			sourceTree = "<group>";
@@ -155,7 +157,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwift.framework",
 			);
 			outputPaths = (
 			);
@@ -173,6 +174,8 @@
 				CC95AE171CD72E0A00E72CC1 /* IGViewController.swift in Sources */,
 				C04133481C282A8200C48FAE /* ViewController.swift in Sources */,
 				C04133461C282A8200C48FAE /* AppDelegate.swift in Sources */,
+				CC69BC7D1CDA2DD3000A2991 /* User.swift in Sources */,
+				CC69BC7B1CDA2AF3000A2991 /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

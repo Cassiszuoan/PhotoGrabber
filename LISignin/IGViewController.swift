@@ -9,17 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import OAuthSwift
+
 
 class IGViewController: UIViewController,UIWebViewDelegate {
     
     
     @IBOutlet weak var webView: UIWebView!
     
-    let IgKey = "22153ebbc4a0490199e5f7aa5ed9f53d"
-    let IgSecret = "5e1345ea144e4226b21a49959dfe6622"
-    let authEndPoint = "https://api.instagram.com/oauth/authorize/"
-    let accessTokenEndPoint = "https://api.instagram.com/oauth/access_token"
+    
     
     
 
@@ -41,19 +38,8 @@ class IGViewController: UIViewController,UIWebViewDelegate {
     func startAuthorization(){
         
        // 範例 https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code
-        
-        
-        
-        let client_id = IgKey
-        let redirect_uri="https://com.instagram.photograbber.oauth/oauth"
-        let response_type="code"
-        
-        var authURL = "\(authEndPoint)?"
-        authURL += "client_id=\(client_id)&"
-        authURL += "redirect_uri=\(redirect_uri)&"
-        authURL += "response_type=\(response_type)"
-        
-        let request = NSURLRequest(URL: NSURL(string: authURL)!)
+        let authURL = AuthIG.Router.authURL
+        let request = NSURLRequest(URL: authURL)
         webView.loadRequest(request)
         
         
@@ -82,27 +68,18 @@ class IGViewController: UIViewController,UIWebViewDelegate {
     
     func requestForAccessToken(authCode:String){
         
-        
-        let grantType = "authorization_code"
-        let redirectURL = "https://com.instagram.photograbber.oauth/oauth"
-        let parameters = [
-            
-            "grant_type": grantType,
-            "code": authCode,
-            "redirect_uri":redirectURL,
-            "client_id":IgKey,
-            "client_secret":IgSecret,
-            
-        ]
+        let request = AuthIG.Router.requestAccessTokenURL(authCode)
         
        Alamofire
-        .request(.POST, accessTokenEndPoint, parameters: parameters)
+        .request(.POST, request.URLString , parameters:request.Params)
         .responseJSON{
             response in
             let json = JSON(response.result.value!)
             print(json)
-            let accessToken = json["access_token"].stringValue
+            if  let accessToken = json["access_token"].string , userName = json["user"]["username"].string{
             
+            
+            NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "UserName")
             NSUserDefaults.standardUserDefaults().setObject(accessToken, forKey: "IGAccessToken")
             NSUserDefaults.standardUserDefaults().synchronize()
             dispatch_async(dispatch_get_main_queue(), {()-> Void in
@@ -114,6 +91,8 @@ class IGViewController: UIViewController,UIWebViewDelegate {
                 }
             
             })
+        }
+            
         }
         
         
