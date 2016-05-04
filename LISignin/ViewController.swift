@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
 class ViewController: UIViewController {
 
     // MARK: IBOutlet Properties
@@ -31,6 +32,25 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func getUserInfo(sender: AnyObject) {
+        
+        let accesstoken = String(NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!)
+        
+        var url = "https://api.instagram.com/v1/users/self/?access_token="
+        url+=accesstoken
+        
+        print(url)
+        
+        Alamofire.request(.GET, url).responseJSON{
+            response in
+            let json = JSON(response.result.value!)
+            print(json)
+        }
+        
+        
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
