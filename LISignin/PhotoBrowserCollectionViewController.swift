@@ -8,23 +8,47 @@
 
 import UIKit
 import SKPhotoBrowser
+import Haneke
+import SwiftyJSON
 
 
 
 private let screenBound = UIScreen.mainScreen().bounds
 private var screenWidth: CGFloat { return screenBound.size.width }
 private var screenHeight: CGFloat { return screenBound.size.height }
-private let reuseIdentifier = "InstagramCell"
-var images = [SKPhoto]()
+
+
+struct Media {
+    
+    var imageURL: NSURL!
+    
+}
+
 
 
 class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SKPhotoBrowserDelegate {
 
+   
+    
+    
+    var medialist = [Media]()
+    private let reuseIdentifier = "InstagramCell"
+    var images = [SKPhoto]()
+    var urlList = [NSURL]()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
-
+        getMediaFromInstagram()
+        
+        
+       
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,25 +57,57 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
 
         // Do any additional setup after loading the view.
         
-        let photo = SKPhoto.photoWithImageURL("https://placehold.jp/150x150.png")
-        photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
-        images.append(photo)
         
         
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
     }
     
     
+   
+       
     
+    func getMediaFromInstagram(){
+        
+        
+        let cache = Cache<Haneke.JSON>(name: "instagram")
+        let URL = NSURL(string: "https://api.instagram.com/v1/users/self/media/recent/?access_token=1577358859.22153eb.500e1815408d44ffa60bd56be2432523")!
+        
+        cache.fetch(URL: URL).onSuccess { JSON in
+         
+            let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
+            
+            if let array = json.array {
+                for d in array {
+                    let media = Media(imageURL: d["images"]["standard_resolution"]["url"].URL)
+                    
+                    self.medialist.append(media)
+                    self.collectionView.reloadData()
+                    
+                    
+                }
+            }
+            
+            
+            for i in self.medialist {
+                
+                let stringurl = i.imageURL!.absoluteString
+                
+                
+                let photo = SKPhoto.photoWithImageURL(stringurl)
+                
+                self.images.append(photo)
+                self.urlList.append(i.imageURL!)
+                self.collectionView.reloadData()
+                
+                
+                
+                
+            }
+                
+            }
+    }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -65,7 +121,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
 
      func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-       
+        print(images.count)
         return images.count
         
     }
@@ -74,8 +130,10 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! InstagramCollectionViewCell
         // Configure the cell
         
-        let image = NSData(contentsOfURL:NSURL(string: images[indexPath.row].photoURL)!)
-        cell.imageView.image = UIImage(data: image!)
+        
+       
+        
+        cell.imageView.hnk_setImageFromURL(urlList[indexPath.row])
         
         return cell
     

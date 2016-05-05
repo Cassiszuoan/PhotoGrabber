@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+
 
 class InstagramCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
     
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     
     override func prepareForReuse() {
         imageView.image = nil

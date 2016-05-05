@@ -25,6 +25,7 @@ class ViewController: UIViewController {
        
         checkForIGExistingAccessToken()
         
+        print(NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken"))
         
         
        
