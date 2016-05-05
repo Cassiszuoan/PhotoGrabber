@@ -1,14 +1,14 @@
 //
 //  ViewController.swift
-//  LISignIn
+// 
 //
-//  Created by Gabriel Theodoropoulos on 21/12/15.
-//  Copyright © 2015 Appcoda. All rights reserved.
+//
 //
 
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SKPhotoBrowser
 class ViewController: UIViewController {
 
     // MARK: IBOutlet Properties
@@ -62,6 +62,12 @@ class ViewController: UIViewController {
         self.viewDidLoad()
     }
     
+    
+    
+    @IBAction func showPhotoBrowser(sender: AnyObject) {
+        
+    }
+    
     @IBAction func Logout(sender: AnyObject) {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey("IGAccessToken")
@@ -105,5 +111,15 @@ class ViewController: UIViewController {
        
     }
     
+    
+    
+}
+
+extension NSLayoutConstraint {
+    
+    override public var description: String {
+        let id = identifier ?? ""
+        return "id: \(id), constant: \(constant)" //you may print whatever you want here
+    }
 }
 

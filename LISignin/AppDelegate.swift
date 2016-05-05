@@ -1,9 +1,7 @@
 //
 //  AppDelegate.swift
-//  LISignIn
+// 
 //
-//  Created by Gabriel Theodoropoulos on 21/12/15.
-//  Copyright © 2015 Appcoda. All rights reserved.
 //
 
 import UIKit

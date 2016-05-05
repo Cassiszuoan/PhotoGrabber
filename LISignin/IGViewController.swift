@@ -3,7 +3,7 @@
 //  LISignIn
 //
 //  Created by JerryMAc on 2016/5/2.
-//  Copyright © 2016年 Appcoda. All rights reserved.
+// 
 //
 
 import UIKit
