@@ -20,6 +20,7 @@ private var screenHeight: CGFloat { return screenBound.size.height }
 
 struct Media {
     
+    var captions: String!
     var imageURL: NSURL!
     
 }
@@ -115,7 +116,10 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
             
             if let array = json.array {
                 for d in array {
-                    let media = Media(imageURL: d["images"]["standard_resolution"]["url"].URL)
+                    let media = Media(
+                        
+                        captions: d["caption"]["text"].string,
+                        imageURL: d["images"]["standard_resolution"]["url"].URL)
                     
                     self.medialist.append(media)
                     self.collectionView.reloadData()
@@ -131,12 +135,12 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
                 
                 
                 let photo = SKPhoto.photoWithImageURL(stringurl)
-                
+                photo.caption = i.captions
                 self.images.append(photo)
                 self.urlList.append(i.imageURL!)
                 self.collectionView.reloadData()
                 
-                
+            
                 
                 
             }
