@@ -30,9 +30,8 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
 
    
     
-    
-    var medialist = [Media]()
     private let reuseIdentifier = "InstagramCell"
+    var medialist = [Media]()
     var images = [SKPhoto]()
     var urlList = [NSURL]()
     
@@ -63,14 +62,52 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "unwindToLogin" {
+            //get destination controller
+            segue.destinationViewController as! ViewController
+            
+        }
+    }
+   
+    
+    
+    @IBAction func Logout(sender: AnyObject) {
+        
+        let alert = UIAlertController(title: "You have been Logout!", message: nil, preferredStyle: .Alert)
+        let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (_)in
+            
+            
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("IGAccessToken")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("UserName")
+            
+            // 清除webview 登入過的cookie
+            if let cookies =   NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies {
+                for cookie in cookies {
+                    NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(cookie)
+                }
+            }
+            
+            self.performSegueWithIdentifier("unwindToLogin", sender: self)
+        })
+        alert.addAction(OKAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+   
+    
    
        
     
     func getMediaFromInstagram(){
         
         
+        let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
+        let stringURL="https://api.instagram.com/v1/users/self/media/recent/?access_token=\(accesstoken)"
         let cache = Cache<Haneke.JSON>(name: "instagram")
-        let URL = NSURL(string: "https://api.instagram.com/v1/users/self/media/recent/?access_token=1577358859.22153eb.500e1815408d44ffa60bd56be2432523")!
+        let URL = NSURL(string: stringURL)!
+        print(URL)
         
         cache.fetch(URL: URL).onSuccess { JSON in
          
@@ -157,19 +194,19 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         let originImage = cell.imageView.image
         let browser = SKPhotoBrowser(originImage: originImage!, photos: images, animatedFromView: cell)
        browser.initializePageIndex(indexPath.row)
-        browser.delegate = self
+    browser.delegate = self
 //
 //        browser.statusBarStyle = .LightContent
        browser.bounceAnimation = true
 //        
 //        // Can hide the action button by setting to false
        browser.displayAction = true
-        
+       browser.displayToolbar = true
         // delete action(you must write `removePhoto` delegate, what resource you want to delete)
         // browser.displayDeleteButton = true
         
         // Optional action button titles (if left off, it uses activity controller
-        // browser.actionButtonTitles = ["Do One Action", "Do Another Action"]
+//         browser.actionButtonTitles = ["Save Image", "Do Another Action"]
         
         presentViewController(browser, animated: true, completion: {})
     }

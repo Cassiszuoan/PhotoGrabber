@@ -83,12 +83,10 @@ class IGViewController: UIViewController,UIWebViewDelegate {
             NSUserDefaults.standardUserDefaults().setObject(accessToken, forKey: "IGAccessToken")
             NSUserDefaults.standardUserDefaults().synchronize()
             dispatch_async(dispatch_get_main_queue(), {()-> Void in
-                self.dismissViewControllerAnimated(true){
-                    ()-> Void in
-
-            NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
-                    
-                }
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+                
+                self.performSegueWithIdentifier("loginsegue", sender: self)
             
             })
         }
