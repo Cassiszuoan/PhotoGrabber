@@ -19,14 +19,17 @@ class IGViewController: UIViewController,UIWebViewDelegate {
     
     
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
+        
         
         startAuthorization()
         // Do any additional setup after loading the view.
+        
         webView.delegate = self
     }
     

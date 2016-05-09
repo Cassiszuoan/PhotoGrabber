@@ -35,6 +35,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     var medialist = [Media]()
     var images = [SKPhoto]()
     var urlList = [NSURL]()
+    var refreshControl =  UIRefreshControl()
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -42,25 +43,29 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        
+        self.collectionView.alwaysBounceVertical = true
+        
         getMediaFromInstagram()
         
         
-       
         
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+     
+        
 
-        // Register cell classes
-
-
-        // Do any additional setup after loading the view.
         
         
         
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        self.refreshControl.addTarget(self, action:#selector(PhotoBrowserCollectionViewController.refreshcell(_:)), forControlEvents: .ValueChanged)
+        
+        self.collectionView.addSubview(refreshControl)
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -72,6 +77,19 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
    
     
+    
+    func refreshcell(refreshControl: UIRefreshControl){
+       
+        
+        medialist.removeAll()
+        images.removeAll()
+        
+        getMediaFromInstagram()
+        
+        
+        
+        refreshControl.endRefreshing()
+    }
     
     @IBAction func Logout(sender: AnyObject) {
         
@@ -97,7 +115,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
    
     
-   
+    
        
     
     func getMediaFromInstagram(){
@@ -106,6 +124,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
         let stringURL="https://api.instagram.com/v1/users/self/media/recent/?access_token=\(accesstoken)"
         let cache = Cache<Haneke.JSON>(name: "instagram")
+        cache.removeAll()
         let URL = NSURL(string: stringURL)!
         print(URL)
         
@@ -167,6 +186,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! InstagramCollectionViewCell
         // Configure the cell
         
