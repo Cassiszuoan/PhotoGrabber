@@ -72,8 +72,11 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         self.collectionView.alwaysBounceVertical = true
         
         
-        
         getMediaFromInstagram()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PhotoBrowserCollectionViewController.updateMediaWithSearchResult), name: "updateResult", object: nil)
+        
+        
         
         
         
@@ -105,12 +108,12 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         
         let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
         let stringURL="https://api.instagram.com/v1/users/search?q=\(searchText)&access_token=\(accesstoken)"
-        let cache = Cache<Haneke.JSON>(name: "searchUserID")
-        cache.removeAll()
+        let searchUserIDcache = Cache<Haneke.JSON>(name: "searchUserID")
+        searchUserIDcache.removeAll()
         let URL = NSURL(string: stringURL)!
         
         
-        cache.fetch(URL: URL).onSuccess { JSON in
+        searchUserIDcache.fetch(URL: URL).onSuccess { JSON in
             
             let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
             
@@ -123,9 +126,21 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
                     if username == searchText {
                         
                         
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.medialist.removeAll()
+                            self.images.removeAll()
+                            Shared.imageCache.removeAll()
+                            self.collectionView.reloadData()
+                           
+                        })
+                        
                         self.searchID = id!
                         
                         print(self.searchID)
+                        
+                   NSNotificationCenter.defaultCenter().postNotificationName("updateResult", object: nil)
+                        
+                        
                         
                         
                     }
@@ -146,26 +161,16 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     
     func updateMediaWithSearchResult(){
         
-        
-       
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            // stop refreshing after 2 seconds
-            self.medialist.removeAll()
-            self.images.removeAll()
-        }
 
-        
         
         let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
         let stringURL="https://api.instagram.com/v1/users/\(searchID)/media/recent/?access_token=\(accesstoken)"
-        
-        let cache = Cache<Haneke.JSON>(name: "searchUser")
-        cache.removeAll()
+        let searchUsercache = Cache<Haneke.JSON>(name: "searchUser")
+        searchUsercache.removeAll()
         let URL = NSURL(string: stringURL)!
         print(URL)
         
-        cache.fetch(URL: URL).onSuccess { JSON in
+        searchUsercache.fetch(URL: URL).onSuccess { JSON in
             
             let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
             
@@ -177,6 +182,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
                         imageURL: d["images"]["standard_resolution"]["url"].URL)
                     
                     self.medialist.append(media)
+                    print(media)
                     self.collectionView.reloadData()
                     
                     
@@ -219,12 +225,6 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
             self.searchBarActive    = true
             let search = searchText.lowercaseString
             self.searchUserID(search)
-            self.collectionView.reloadData()
-            print("SearchID = \(searchID)")
-            if searchID != "" {
-              self.updateMediaWithSearchResult()
-                
-            }
             
         }else{
             // if text lenght == 0
@@ -429,6 +429,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         
         
        
+        
         
         cell.imageView.hnk_setImageFromURL(urlList[indexPath.row])
         
