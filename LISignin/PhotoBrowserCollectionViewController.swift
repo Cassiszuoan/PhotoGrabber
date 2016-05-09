@@ -112,7 +112,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         searchUserIDcache.removeAll()
         let URL = NSURL(string: stringURL)!
         
-        
+        print(URL)
         searchUserIDcache.fetch(URL: URL).onSuccess { JSON in
             
             let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
@@ -129,7 +129,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.medialist.removeAll()
                             self.images.removeAll()
-                            Shared.imageCache.removeAll()
+                            self.urlList.removeAll()
                             self.collectionView.reloadData()
                            
                         })
