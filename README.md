@@ -7,7 +7,12 @@ PhotoGrabber
 A simple app grabbing users' photo from instagram written in swift.
 
 
+## Screenshots
 
+<img src="https://raw.githubusercontent.com/Cassiszuoan/PhotoGrabber/master/Login.png" width="355"/>
+<img src="https://raw.githubusercontent.com/Cassiszuoan/PhotoGrabber/master/Auth.png" width="355"/>
+<img src="https://raw.githubusercontent.com/Cassiszuoan/PhotoGrabber/master/Album.png" width="355"/>
+<img src="https://raw.githubusercontent.com/Cassiszuoan/PhotoGrabber/master/PhotoBrowser.png" width="355"/>
 
 ## Requirements
 
