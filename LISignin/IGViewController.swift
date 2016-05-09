@@ -87,7 +87,7 @@ class IGViewController: UIViewController,UIWebViewDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
             dispatch_async(dispatch_get_main_queue(), {()-> Void in
                 
-                NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+                
                 
                 self.performSegueWithIdentifier("loginsegue", sender: self)
             

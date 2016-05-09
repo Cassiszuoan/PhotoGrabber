@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -59,11 +60,11 @@
                                 <exclude reference="1hv-ke-NnN"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Kdl-if-XpT"/>
                                 <exclude reference="Y1Z-gq-WhT"/>
                                 <exclude reference="q2W-bo-UZV"/>
                                 <exclude reference="qjC-md-6XD"/>
                                 <exclude reference="sP9-ED-uma"/>
-                                <exclude reference="Kdl-if-XpT"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -71,21 +72,22 @@
                                 <include reference="1hv-ke-NnN"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Kdl-if-XpT"/>
                                 <include reference="Y1Z-gq-WhT"/>
                                 <include reference="q2W-bo-UZV"/>
                                 <include reference="qjC-md-6XD"/>
                                 <include reference="sP9-ED-uma"/>
-                                <include reference="Kdl-if-XpT"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="IGsignin" destination="MsW-nj-xc7" id="HRX-b2-b3o"/>
+                        <segue destination="nDO-gK-RPi" kind="showDetail" identifier="showPhotoBrowser" id="pbx-Xd-sEs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="306" y="246"/>
+            <point key="canvasLocation" x="3456" y="2602"/>
         </scene>
         <!--Photo Browser Collection View Controller-->
         <scene sceneID="0aC-qZ-KxV">
@@ -101,7 +103,7 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCT-EO-Oh9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem style="plain" id="kva-I9-A7X">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3kz-c2-vSf">
@@ -202,6 +204,8 @@
                                 <exclude reference="rt3-90-poa"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ecC-Mu-Jvu"/>
+                                <exclude reference="tzP-YH-TBn"/>
                                 <exclude reference="Lbt-yZ-4EF"/>
                                 <exclude reference="MNE-h8-fqh"/>
                                 <exclude reference="RKD-o1-BnQ"/>
@@ -210,8 +214,6 @@
                                 <exclude reference="9i5-RG-OoF"/>
                                 <exclude reference="puL-lX-sqB"/>
                                 <exclude reference="sJD-TG-mZ9"/>
-                                <exclude reference="ecC-Mu-Jvu"/>
-                                <exclude reference="tzP-YH-TBn"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -221,6 +223,8 @@
                                 <include reference="rt3-90-poa"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ecC-Mu-Jvu"/>
+                                <include reference="tzP-YH-TBn"/>
                                 <include reference="Lbt-yZ-4EF"/>
                                 <include reference="MNE-h8-fqh"/>
                                 <include reference="RKD-o1-BnQ"/>
@@ -229,8 +233,6 @@
                                 <include reference="9i5-RG-OoF"/>
                                 <include reference="puL-lX-sqB"/>
                                 <include reference="sJD-TG-mZ9"/>
-                                <include reference="ecC-Mu-Jvu"/>
-                                <include reference="tzP-YH-TBn"/>
                             </mask>
                         </variation>
                     </view>
@@ -245,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztl-zL-uIs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1105.5" y="254"/>
+            <point key="canvasLocation" x="3760.5" y="784"/>
         </scene>
         <!--Instagram View Controller-->
         <scene sceneID="oBM-Qy-LY2">
@@ -314,10 +316,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2y-5j-8oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="1764"/>
+            <point key="canvasLocation" x="1131" y="1744"/>
         </scene>
     </scenes>
     <resources>
         <image name="instagram-1" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Szx-Ic-ZRC"/>
+    </inferredMetricsTieBreakers>
 </document>

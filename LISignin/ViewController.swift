@@ -21,7 +21,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Logout()
+        print(NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken"))
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken") != nil {
+            
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                [unowned self] in
+                self.performSegueWithIdentifier("showPhotoBrowser", sender: self)
+            }
+            
+            
+        }
         
   
     }
@@ -41,32 +52,6 @@ class ViewController: UIViewController {
 
     
    
-    
-    
-    
-     func Logout() {
-        
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("IGAccessToken")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("UserName")
-        
-        // 清除webview 登入過的cookie
-        if let cookies =   NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies {
-            for cookie in cookies {
-                NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(cookie)
-            }
-        }
-        
-        
-    }
-    
-    
-
-
-    
-    
-    
-    
-    
     
     
 }

@@ -10,6 +10,7 @@ import UIKit
 import SKPhotoBrowser
 import Haneke
 import SwiftyJSON
+import Alamofire
 
 
 
@@ -22,6 +23,15 @@ struct Media {
     
     var captions: String!
     var imageURL: NSURL!
+    
+}
+
+
+struct SearchUser {
+    
+    var user_id: String!
+    var user_name: String!
+    var media: Media?
     
 }
 
@@ -40,6 +50,8 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     var refreshControl =  UIRefreshControl()
     var searchController: UISearchController!
     var searchBarActive:Bool = false
+    var searchID:String = ""
+    
     
     @IBOutlet weak var SearchBarView: UIView!
 
@@ -51,6 +63,8 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+         
         collectionView.dataSource = self
         collectionView.delegate = self
         SearchBar.delegate = self
@@ -84,17 +98,134 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     // MARK: Search
-    func filterContentForSearchText(searchText:String){
+    func searchUserID(searchText:String) {
         
+        
+        
+        
+        let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
+        let stringURL="https://api.instagram.com/v1/users/search?q=\(searchText)&access_token=\(accesstoken)"
+        let cache = Cache<Haneke.JSON>(name: "searchUserID")
+        cache.removeAll()
+        let URL = NSURL(string: stringURL)!
+        
+        
+        cache.fetch(URL: URL).onSuccess { JSON in
+            
+            let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
+            
+            if let array = json.array {
+                for d in array {
+                    
+                    let id = d["id"].string
+                    let username = d["username"].string
+                    
+                    if username == searchText {
+                        
+                        
+                        self.searchID = id!
+                        
+                        print(self.searchID)
+                        
+                        
+                    }
+                    else {
+                        
+                        self.searchID = ""
+                    }
+            }
+            }
+            
+            
+        }
+        
+    
     }
     
+    
+    
+    func updateMediaWithSearchResult(){
+        
+        
+       
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            // stop refreshing after 2 seconds
+            self.medialist.removeAll()
+            self.images.removeAll()
+        }
+
+        
+        
+        let accesstoken=NSUserDefaults.standardUserDefaults().objectForKey("IGAccessToken")!
+        let stringURL="https://api.instagram.com/v1/users/\(searchID)/media/recent/?access_token=\(accesstoken)"
+        
+        let cache = Cache<Haneke.JSON>(name: "searchUser")
+        cache.removeAll()
+        let URL = NSURL(string: stringURL)!
+        print(URL)
+        
+        cache.fetch(URL: URL).onSuccess { JSON in
+            
+            let json = SwiftyJSON.JSON(JSON.dictionary["data"]!)
+            
+            if let array = json.array {
+                for d in array {
+                    let media = Media(
+                        
+                        captions: d["caption"]["text"].string,
+                        imageURL: d["images"]["standard_resolution"]["url"].URL)
+                    
+                    self.medialist.append(media)
+                    self.collectionView.reloadData()
+                    
+                    
+                }
+            }
+            
+            
+            for i in self.medialist {
+                
+                let stringurl = i.imageURL!.absoluteString
+                
+                
+                let photo = SKPhoto.photoWithImageURL(stringurl)
+                photo.caption = i.captions
+                self.images.append(photo)
+                self.urlList.append(i.imageURL!)
+                self.collectionView.reloadData()
+                
+                
+                
+                
+            }
+            
+        }
+        
+            
+        
+        
+
+    }
+    
+    
+    
+
+
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         // user did type something, check our datasource for text that looks the same
         if searchText.characters.count > 0 {
             // search and reload data source
             self.searchBarActive    = true
-            self.filterContentForSearchText(searchText)
-            self.collectionView?.reloadData()
+            let search = searchText.lowercaseString
+            self.searchUserID(search)
+            self.collectionView.reloadData()
+            print("SearchID = \(searchID)")
+            if searchID != "" {
+              self.updateMediaWithSearchResult()
+                
+            }
+            
         }else{
             // if text lenght == 0
             // we will consider the searchbar is not active
@@ -269,7 +400,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
                 
             }
                 
-            }
+        }
     }
     
 
