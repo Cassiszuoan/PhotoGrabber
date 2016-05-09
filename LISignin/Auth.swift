@@ -20,7 +20,7 @@ struct AuthIG {
         static let clientID = IG_CLIENT_KEY
         static let clientSecret = IG_CLIENT_SECRET
         static let redirectURL = IG_REDIRECT_URL
-        static let authURL = NSURL(string:Router.baseURLString+"/oauth/authorize/?client_id="+Router.clientID+"&redirect_uri="+Router.redirectURL+"&response_type=code")!
+        static let authURL = NSURL(string:Router.baseURLString+"/oauth/authorize/?client_id="+Router.clientID+"&redirect_uri="+Router.redirectURL+"&response_type=code&scope=public_content")!
         
         
         case requestCode

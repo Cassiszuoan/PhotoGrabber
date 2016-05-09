@@ -20,6 +20,8 @@ class InstagramCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.blackColor().CGColor
         
     }
     

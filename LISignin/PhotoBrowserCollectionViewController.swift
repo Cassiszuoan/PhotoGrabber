@@ -59,7 +59,6 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         
         
         
-        
     }
     
     
@@ -182,13 +181,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            return CGSize(width: screenWidth/2 - 5, height: 300)
-        } else {
-            return CGSize(width: screenWidth/2 - 5, height: 200)
-        }
-    }
+
     
     
     
