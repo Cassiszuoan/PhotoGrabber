@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -22,50 +21,49 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoGrabber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hv-ke-NnN">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="lO4-rd-yG8"/>
+                                    <constraint firstAttribute="height" constant="47" id="YnK-9m-6aG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="lO4-rd-yG8"/>
+                                        <exclude reference="YnK-9m-6aG"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="lO4-rd-yG8"/>
+                                        <include reference="YnK-9m-6aG"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-nj-xc7">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-nj-xc7">
                                 <rect key="frame" x="241" y="285" width="119" height="30"/>
-                                <state key="normal" title="Login With Instagram"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                                <state key="normal" title="Login With Instagram" image="instagram-1"/>
                                 <connections>
                                     <segue destination="n2y-2y-o18" kind="presentation" identifier="idSegueShowIGVC" id="KzL-oG-HOL"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1hv-ke-NnN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2Kv-mi-Jnp"/>
-                            <constraint firstItem="MsW-nj-xc7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DxN-cj-d7J"/>
-                            <constraint firstItem="1hv-ke-NnN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="FRK-aR-9y9"/>
-                            <constraint firstItem="1hv-ke-NnN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="RKe-nk-iPd"/>
-                            <constraint firstItem="1hv-ke-NnN" firstAttribute="leading" secondItem="MsW-nj-xc7" secondAttribute="leading" id="k1n-M2-eoR"/>
-                            <constraint firstItem="1hv-ke-NnN" firstAttribute="trailing" secondItem="MsW-nj-xc7" secondAttribute="trailing" id="riY-QX-q9g"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MsW-nj-xc7" secondAttribute="bottom" constant="213" id="Kdl-if-XpT"/>
+                            <constraint firstItem="1hv-ke-NnN" firstAttribute="centerX" secondItem="MsW-nj-xc7" secondAttribute="centerX" id="Y1Z-gq-WhT"/>
+                            <constraint firstItem="1hv-ke-NnN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="q2W-bo-UZV"/>
+                            <constraint firstItem="1hv-ke-NnN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qjC-md-6XD"/>
+                            <constraint firstItem="1hv-ke-NnN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="154" id="sP9-ED-uma"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="1hv-ke-NnN"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="2Kv-mi-Jnp"/>
-                                <exclude reference="FRK-aR-9y9"/>
-                                <exclude reference="RKe-nk-iPd"/>
-                                <exclude reference="k1n-M2-eoR"/>
-                                <exclude reference="riY-QX-q9g"/>
-                                <exclude reference="DxN-cj-d7J"/>
+                                <exclude reference="Y1Z-gq-WhT"/>
+                                <exclude reference="q2W-bo-UZV"/>
+                                <exclude reference="qjC-md-6XD"/>
+                                <exclude reference="sP9-ED-uma"/>
+                                <exclude reference="Kdl-if-XpT"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -73,12 +71,11 @@
                                 <include reference="1hv-ke-NnN"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="2Kv-mi-Jnp"/>
-                                <include reference="FRK-aR-9y9"/>
-                                <include reference="RKe-nk-iPd"/>
-                                <include reference="k1n-M2-eoR"/>
-                                <include reference="riY-QX-q9g"/>
-                                <include reference="DxN-cj-d7J"/>
+                                <include reference="Y1Z-gq-WhT"/>
+                                <include reference="q2W-bo-UZV"/>
+                                <include reference="qjC-md-6XD"/>
+                                <include reference="sP9-ED-uma"/>
+                                <include reference="Kdl-if-XpT"/>
                             </mask>
                         </variation>
                     </view>
@@ -320,4 +317,7 @@
             <point key="canvasLocation" x="999" y="1764"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="instagram-1" width="25" height="25"/>
+    </resources>
 </document>
