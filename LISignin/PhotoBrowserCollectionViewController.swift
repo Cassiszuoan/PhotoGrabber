@@ -41,6 +41,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
 
    
     
+    // MARK: 變數
     private let reuseIdentifier = "InstagramCell"
     var medialist = [Media]()
     var images = [SKPhoto]()
@@ -60,6 +61,9 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     @IBOutlet weak var SearchBar: UISearchBar!
     
 
+    
+    
+    // MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -167,6 +171,7 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
         let stringURL="https://api.instagram.com/v1/users/\(searchID)/media/recent/?access_token=\(accesstoken)"
         let searchUsercache = Cache<Haneke.JSON>(name: "searchUser")
         searchUsercache.removeAll()
+
         let URL = NSURL(string: stringURL)!
         print(URL)
         
@@ -309,7 +314,21 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
     }
    
     
+    // MARK: 重整
     
+    
+    func refresh(){
+        
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            // stop refreshing after 2 seconds
+            self.medialist.removeAll()
+            self.images.removeAll()
+            self.urlList.removeAll()
+            
+        }
+    }
     func refreshcell(refreshControl: UIRefreshControl){
        
         
@@ -320,10 +339,15 @@ class PhotoBrowserCollectionViewController: UIViewController, UICollectionViewDa
             // stop refreshing after 2 seconds
             self.medialist.removeAll()
             self.images.removeAll()
+            self.urlList.removeAll()
+            self.collectionView.reloadData()
             self.getMediaFromInstagram()
             refreshControl.endRefreshing()
+            
         }
         
+        
+
     }
     
     // MARK: 登出
